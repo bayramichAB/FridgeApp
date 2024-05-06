@@ -30,7 +30,7 @@ namespace FridgeApp_API.Repository.Configuration
                         Id = new Guid("217502ea-394d-439b-8968-ef018426b329"),
                         Name = "ATLANT",
                         OwnerName = "Bogdana",
-                        Fridge_ModelId = new Guid("0b807b23-c2ee-4527-a8e5-89bf7d285e35")
+                        Fridge_ModelId = new Guid("3ff39ba8-a6f3-40bf-b1ce-6c2b89068f1c")
                     }
                 );
         }

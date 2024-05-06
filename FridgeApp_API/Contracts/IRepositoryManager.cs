@@ -6,6 +6,6 @@
         IFridge_Model Fridge_Model { get; }
         IFridge_Product Fridge_Product { get; }
         IProduct Product { get; }
-        void Save();
+        Task SaveAsync();
     }
 }

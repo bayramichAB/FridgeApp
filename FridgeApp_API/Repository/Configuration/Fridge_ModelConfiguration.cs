@@ -18,8 +18,8 @@ namespace FridgeApp_API.Repository.Configuration
                     },
                     new Fridge_Model
                     {
-                        Id = new Guid("0b807b23-c2ee-4527-a8e5-89bf7d285e35"),
-                        Name = "KGN49XLEA",
+                        Id = new Guid("3ff39ba8-a6f3-40bf-b1ce-6c2b89068f1c"),
+                        Name = "МХМ 2819 ",
                         Year = new DateTime(2022, 8, 06, 18, 30, 25)
                     }
                 );

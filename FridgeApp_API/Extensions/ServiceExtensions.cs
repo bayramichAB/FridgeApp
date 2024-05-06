@@ -1,6 +1,8 @@
 ﻿using FridgeApp_API.Contracts;
 using FridgeApp_API.Data;
 using FridgeApp_API.Repository;
+using FridgeApp_API.Service;
+using FridgeApp_API.ServiceContracts;
 using Microsoft.EntityFrameworkCore;
 
 namespace FridgeApp_API.Extensions
@@ -13,5 +15,9 @@ namespace FridgeApp_API.Extensions
 
         public static void ConfigureRepositoryManager(this IServiceCollection services) =>
             services.AddScoped<IRepositoryManager, RepositoryManager>();
+
+        public static void ConfigureServiceManager(this IServiceCollection services) =>
+            services.AddScoped<IServiceManager, ServiceManager>();
+
     }
 }

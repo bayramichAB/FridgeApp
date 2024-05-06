@@ -12,7 +12,15 @@ namespace FridgeApp_API.Repository
         {
             
         }
-        /*public async Task<IEnumerable<Fridge>> GetAllFridges(bool trackChanges) =>
-            await FindAll(trackChanges).OrderBy(c => c.OwnerName).ToListAsync();*/
+
+        public async Task<IEnumerable<Fridge>>GetAllFridges(bool trackChanges) =>
+            await FindAll(trackChanges).OrderBy(c => c.OwnerName).ToListAsync();
+
+#pragma warning disable CS8603
+        public async Task<Fridge> GetFridgeById(Guid fridgeid, bool trachChanges) =>
+           await FindByCondition(f => f.Id.Equals(fridgeid), trachChanges).SingleOrDefaultAsync();
+
+        public void CreateFridge(Fridge fridge) => Create(fridge);
+        public void DeleteFridge(Fridge fridge) => Delete(fridge);
     }
 }

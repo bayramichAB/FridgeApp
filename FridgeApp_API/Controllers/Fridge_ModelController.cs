@@ -1,4 +1,4 @@
-﻿using FridgeApp_API.Data;
+﻿/*using FridgeApp_API.Data;
 using FridgeApp_API.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -70,3 +70,4 @@ namespace FridgeApp_API.Controllers
         }
     }
 }
+*/

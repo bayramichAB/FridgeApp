@@ -13,18 +13,12 @@ namespace FridgeApp_API.Repository
         => _Context = Context;
 
         public IQueryable<T> FindAll(bool trackChanges) =>
-        !trackChanges ?
-        _Context.Set<T>()
-        .AsNoTracking() :
-        _Context.Set<T>();
+        !trackChanges ? _Context.Set<T>().AsNoTracking() : _Context.Set<T>();
+
         public IQueryable<T> FindByCondition(Expression<Func<T, bool>> expression,
-        bool trackChanges) =>
-        !trackChanges ?
-        _Context.Set<T>()
-        .Where(expression)
-        .AsNoTracking() :
-        _Context.Set<T>()
-        .Where(expression);
+        bool trackChanges) => !trackChanges ? _Context.Set<T>().Where(expression)
+        .AsNoTracking() : _Context.Set<T>().Where(expression);
+
         public void Create(T entity) => _Context.Set<T>().Add(entity);
         public void Update(T entity) => _Context.Set<T>().Update(entity);
         public void Delete(T entity) => _Context.Set<T>().Remove(entity);

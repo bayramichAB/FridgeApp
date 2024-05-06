@@ -4,6 +4,7 @@ using FridgeApp_API.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FridgeApp_API.Migrations
 {
     [DbContext(typeof(ApiDbContext))]
-    partial class ApiDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240506184752_DatabaseCreation3")]
+    partial class DatabaseCreation3
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -61,7 +63,7 @@ namespace FridgeApp_API.Migrations
                         new
                         {
                             Id = new Guid("217502ea-394d-439b-8968-ef018426b329"),
-                            Fridge_ModelId = new Guid("3ff39ba8-a6f3-40bf-b1ce-6c2b89068f1c"),
+                            Fridge_ModelId = new Guid("0b807b23-c2ee-4527-a8e5-89bf7d285e35"),
                             Name = "ATLANT",
                             OwnerName = "Bogdana"
                         });
@@ -94,8 +96,8 @@ namespace FridgeApp_API.Migrations
                         },
                         new
                         {
-                            Id = new Guid("3ff39ba8-a6f3-40bf-b1ce-6c2b89068f1c"),
-                            Name = "МХМ 2819 ",
+                            Id = new Guid("0b807b23-c2ee-4527-a8e5-89bf7d285e35"),
+                            Name = "KGN49XLEA",
                             Year = new DateTime(2022, 8, 6, 18, 30, 25, 0, DateTimeKind.Unspecified)
                         });
                 });

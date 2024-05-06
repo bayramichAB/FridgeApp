@@ -24,6 +24,6 @@ namespace FridgeApp_API.Repository
         public IFridge_Model Fridge_Model => _fridge_ModelRepo.Value;
         public IFridge_Product Fridge_Product => _fridge_ProductRepo.Value;
         public IProduct Product => _productRepo.Value;
-        public void Save() => _context.SaveChanges();
+        public async Task SaveAsync() => await _context.SaveChangesAsync();
     }
 }
