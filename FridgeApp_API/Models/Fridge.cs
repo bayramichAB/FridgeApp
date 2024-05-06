@@ -12,8 +12,6 @@ namespace FridgeApp_API.Models
         [Required(ErrorMessage = "Fridge name is a required field.")]
         public string Name { get; set; } = string.Empty;
         public string? OwnerName { get; set; }
-
-        public Fridge_Model? Model {get;set;}
         [ForeignKey(nameof(Fridge_Model))]
         public Guid Fridge_ModelId { get; set; }
     }
