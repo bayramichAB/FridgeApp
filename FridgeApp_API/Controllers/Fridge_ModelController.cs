@@ -1,5 +1,8 @@
-﻿/*using FridgeApp_API.Data;
+﻿using AutoMapper;
+using FridgeApp_API.Contracts;
+using FridgeApp_API.Data;
 using FridgeApp_API.Models;
+using FridgeApp_API.ServiceContracts;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -10,64 +13,53 @@ namespace FridgeApp_API.Controllers
     [ApiController]
     public class Fridge_ModelController : ControllerBase
     {
-        private readonly ApiDbContext _context;
+        private readonly IServiceManager _service;
 
-        public Fridge_ModelController(ApiDbContext context)
+        public Fridge_ModelController( IServiceManager service)
         {
-            _context = context;
+            _service = service;
         }
 
         [HttpGet]
-        public async Task<ActionResult<List<Fridge_Model>>> GetModels()
+        public async Task<IActionResult> GetModels()
         {
-            return Ok(await _context.Fridge_Models.ToListAsync());
+            return Ok(await _service.Fridge_ModelService.GetAllModelsAsync(trackChanges: false));
         }
 
-        [HttpGet("{id}")]
-        public ActionResult<Fridge_Model> GetModel(Guid id)
+
+        [HttpGet("{id:guid}", Name = "FridgeModelById")]
+        public async Task<IActionResult> GetFridgeModel(Guid id)
         {
-            var model = _context.Fridge_Models.Find(id);
-            if (model == null)
+            var fridgeModel = await _service.Fridge_ModelService.GetModelByIdAsync(id, trachChanges: false);
+            if (fridgeModel is null)
             {
                 return NotFound();
             }
-            return model;
+            return Ok(fridgeModel);
         }
 
-       
 
-        [HttpPost]
-        public async Task<ActionResult<Fridge_Model>> Create(Fridge_Model fridge_Model)
+        [HttpPost(Name = "CreateFridgeModel")]
+        public async Task<ActionResult> CreateFridgeModel([FromBody] Fridge_Model fridgeModel)
         {
-            _context.Add(fridge_Model);
-            await _context.SaveChangesAsync();
-            return Ok(fridge_Model);
+            var createdFridgeModel = await _service.Fridge_ModelService.CreateFridgeModelAsync(fridgeModel);
+            return CreatedAtRoute("FridgeModelById", new { id = createdFridgeModel.Id }, createdFridgeModel);
         }
+
 
         [HttpPut("{id}")]
-        public async Task<ActionResult> Update(Guid id ,Fridge_Model fridge_Model)
+        public async Task<IActionResult> UpdateModel(Guid id, [FromBody] Fridge_Model fridgeModel)
         {
-            if (id != fridge_Model.Id)
-            {
-                return BadRequest();
-            }
-            _context.Entry(fridge_Model).State = EntityState.Modified;
-            await _context.SaveChangesAsync();
-            return Ok();
+            await _service.Fridge_ModelService.UpdateFridgeModelAsync(id, fridgeModel, trachChanges: true);
+            return NoContent();
         }
+
 
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(Guid id)
         {
-            var model = _context.Fridge_Models.Find(id);
-            if(model == null)
-            {
-                return NotFound();
-            }
-            _context.Remove(model);
-            await _context.SaveChangesAsync();
-            return Ok();
+            await _service.Fridge_ModelService.DeleteFridgeModelAsync(id, trachChanges: false);
+            return NoContent();
         }
     }
 }
-*/

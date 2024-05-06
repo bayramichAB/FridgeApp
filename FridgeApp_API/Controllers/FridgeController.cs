@@ -42,14 +42,14 @@ namespace FridgeApp_API.Controllers
             return CreatedAtRoute("FridgeById", new { id = createdFridge.Id }, createdFridge);
         }
 
-        [HttpPut("{id}")]
+        [HttpPut("{id:guid}")]
         public async Task <IActionResult> Update(Guid id,[FromBody] Fridge fridge)
         {
             await _service.FridgeService.UpdateFridgeAsync(id, fridge, trachChanges: true);
             return NoContent();
         }
 
-        [HttpDelete("{id}")]
+        [HttpDelete("{id:guid}")]
         public async Task<IActionResult> Delete(Guid id)
         {
             await _service.FridgeService.DeleteFridgeAsync(id, trachChanges:false);
